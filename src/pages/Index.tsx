@@ -1,8 +1,45 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, CreditCard, BarChart3, Users } from "lucide-react";
+import { Shield, CreditCard, BarChart3, Users, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
+  const { user, loading, signOut } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Don't redirect if still loading
+    if (loading) return;
+    
+    // Redirect to auth if not logged in
+    if (!user) {
+      navigate("/auth");
+    }
+  }, [user, loading, navigate]);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/auth");
+  };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <CreditCard className="h-12 w-12 text-primary mx-auto mb-4 animate-pulse" />
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render main content if not authenticated
+  if (!user) {
+    return null;
+  }
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -13,8 +50,11 @@ const Index = () => {
             <h1 className="text-2xl font-bold text-foreground">Jezdene</h1>
           </div>
           <div className="space-x-4">
-            <Button variant="outline">Login</Button>
-            <Button>Get Started</Button>
+            <Button variant="outline" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Sign Out
+            </Button>
+            <Button>Dashboard</Button>
           </div>
         </div>
       </header>
@@ -23,15 +63,15 @@ const Index = () => {
       <section className="py-24 bg-gradient-to-b from-background to-muted/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold text-foreground mb-6">
-            Direct Payment Gateway
+            Welcome to Jezdene
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Accept payments directly to your bank account with transparent 3% + $0.30 fees. 
-            Simple integration, secure processing, real-time settlements.
+            Your payment gateway is ready! Start processing payments with transparent 3% + $0.30 fees. 
+            Access your merchant dashboard and API credentials below.
           </p>
           <div className="space-x-4">
-            <Button size="lg">Start Processing Payments</Button>
-            <Button variant="outline" size="lg">View Documentation</Button>
+            <Button size="lg">Merchant Dashboard</Button>
+            <Button variant="outline" size="lg">API Documentation</Button>
           </div>
         </div>
       </section>
