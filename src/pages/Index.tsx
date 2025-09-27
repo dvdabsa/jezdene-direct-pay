@@ -7,7 +7,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <CreditCard className="h-8 w-8 text-primary" />
             <h1 className="text-2xl font-bold text-foreground">Jezdene</h1>
@@ -20,8 +20,8 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-gradient-to-b from-background to-muted/20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="text-5xl font-bold text-foreground mb-6">
             Direct Payment Gateway
           </h1>
@@ -37,12 +37,12 @@ const Index = () => {
       </section>
 
       {/* Features */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center text-foreground mb-12">
             Why Choose Jezdene?
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card>
               <CardHeader className="text-center">
                 <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
@@ -95,8 +95,8 @@ const Index = () => {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 bg-muted/20">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-muted/20">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
             <p className="text-muted-foreground">No hidden fees, no monthly charges</p>
@@ -121,8 +121,8 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
+      <footer className="border-t border-border py-12">
+        <div className="max-w-7xl mx-auto px-6 text-center text-muted-foreground">
           <p>&copy; 2024 Jezdene. All rights reserved.</p>
         </div>
       </footer>
