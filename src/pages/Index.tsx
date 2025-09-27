@@ -1,12 +1,131 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Shield, CreditCard, BarChart3, Users } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b border-border">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <CreditCard className="h-8 w-8 text-primary" />
+            <h1 className="text-2xl font-bold text-foreground">Jezdene</h1>
+          </div>
+          <div className="space-x-4">
+            <Button variant="outline">Login</Button>
+            <Button>Get Started</Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold text-foreground mb-6">
+            Direct Payment Gateway
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Accept payments directly to your bank account with transparent 3% + $0.30 fees. 
+            Simple integration, secure processing, real-time settlements.
+          </p>
+          <div className="space-x-4">
+            <Button size="lg">Start Processing Payments</Button>
+            <Button variant="outline" size="lg">View Documentation</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-foreground mb-12">
+            Why Choose Jezdene?
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card>
+              <CardHeader className="text-center">
+                <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
+                <CardTitle>Secure & Compliant</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Bank-grade encryption and tokenization with full PCI compliance
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="text-center">
+                <CreditCard className="h-12 w-12 text-primary mx-auto mb-4" />
+                <CardTitle>Direct Deposits</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Payments go directly to your bank account with automatic fee deduction
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="text-center">
+                <BarChart3 className="h-12 w-12 text-primary mx-auto mb-4" />
+                <CardTitle>Real-time Analytics</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Monitor transactions, fees, and settlements with detailed reporting
+                </CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader className="text-center">
+                <Users className="h-12 w-12 text-primary mx-auto mb-4" />
+                <CardTitle>Easy Integration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  Simple REST API for seamless integration into any platform
+                </CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-16 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-muted-foreground">No hidden fees, no monthly charges</p>
+          </div>
+          <Card className="max-w-md mx-auto">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">Pay Per Transaction</CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="text-4xl font-bold text-primary mb-4">3% + $0.30</div>
+              <p className="text-muted-foreground mb-6">per successful transaction</p>
+              <ul className="text-left space-y-2 text-sm text-muted-foreground">
+                <li>✓ Direct bank deposits</li>
+                <li>✓ Real-time processing</li>
+                <li>✓ Detailed transaction records</li>
+                <li>✓ Admin dashboard included</li>
+                <li>✓ 24/7 support</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-8">
+        <div className="container mx-auto px-4 text-center text-muted-foreground">
+          <p>&copy; 2024 Jezdene. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
