@@ -32,14 +32,14 @@ serve(async (req) => {
     console.log(`Seller amount: $${sellerAmount / 100}`);
 
     // Create Stripe payment link
-    const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
-    if (!stripeSecretKey) {
-      console.error('STRIPE_SECRET_KEY not found');
-      return new Response(
-        JSON.stringify({ error: 'Stripe configuration missing' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
+    const stripeSecretKey = "sk_test_51PqQFSIfKoS8tHCk5qHkjgBm5xUGJhTAtrVrZgt4AfMnT8ti5quExB8CTKpw4n251CVUdKnZnVYB9LNNm22te7du00XAoqblDP";
+    // if (!stripeSecretKey) {
+    //   console.error('STRIPE_SECRET_KEY not found');
+    //   return new Response(
+    //     JSON.stringify({ error: 'Stripe configuration missing' }),
+    //     { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    //   );
+    // }
 
     // First, create a product
     const productResponse = await fetch('https://api.stripe.com/v1/products', {
