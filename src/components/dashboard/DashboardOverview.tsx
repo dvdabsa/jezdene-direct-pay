@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   TrendingUp,
   TrendingDown,
@@ -12,6 +13,7 @@ import {
   Activity,
   Clock,
 } from "lucide-react";
+import { PaymentLinks } from "./PaymentLinks";
 
 export function DashboardOverview() {
   // Mock data - in real app this would come from API
@@ -113,65 +115,78 @@ export function DashboardOverview() {
         </Card>
       </div>
 
-      {/* Recent Activity */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
-          <CardHeader>
-            <CardTitle>Recent Transactions</CardTitle>
-            <CardDescription>
-              Your latest payment activity
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {recentTransactions.map((transaction) => (
-                <div key={transaction.id} className="flex items-center justify-between p-3 border border-border rounded-lg">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
-                      <CreditCard className="h-4 w-4" />
+      {/* Main Content Tabs */}
+      <Tabs defaultValue="overview" className="space-y-4">
+        <TabsList>
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="payment-links">Payment Links</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="overview" className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <Card className="lg:col-span-4">
+              <CardHeader>
+                <CardTitle>Recent Transactions</CardTitle>
+                <CardDescription>
+                  Your latest payment activity
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {recentTransactions.map((transaction) => (
+                    <div key={transaction.id} className="flex items-center justify-between p-3 border border-border rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-muted rounded-full flex items-center justify-center">
+                          <CreditCard className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium">${transaction.amount}</p>
+                          <p className="text-xs text-muted-foreground">{transaction.customer}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        {getStatusBadge(transaction.status)}
+                        <p className="text-xs text-muted-foreground mt-1">{transaction.time}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-medium">${transaction.amount}</p>
-                      <p className="text-xs text-muted-foreground">{transaction.customer}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    {getStatusBadge(transaction.status)}
-                    <p className="text-xs text-muted-foreground mt-1">{transaction.time}</p>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
 
-        <Card className="lg:col-span-3">
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>
-              Common tasks and shortcuts
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <Button className="w-full justify-start" variant="outline">
-              <CreditCard className="mr-2 h-4 w-4" />
-              Create Payment Link
-            </Button>
-            <Button className="w-full justify-start" variant="outline">
-              <Users className="mr-2 h-4 w-4" />
-              View All Customers
-            </Button>
-            <Button className="w-full justify-start" variant="outline">
-              <DollarSign className="mr-2 h-4 w-4" />
-              Request Payout
-            </Button>
-            <Button className="w-full justify-start" variant="outline">
-              <ArrowUpRight className="mr-2 h-4 w-4" />
-              API Documentation
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+            <Card className="lg:col-span-3">
+              <CardHeader>
+                <CardTitle>Quick Actions</CardTitle>
+                <CardDescription>
+                  Common tasks and shortcuts
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button className="w-full justify-start" variant="outline">
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  Create Payment Link
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Users className="mr-2 h-4 w-4" />
+                  View All Customers
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <DollarSign className="mr-2 h-4 w-4" />
+                  Request Payout
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <ArrowUpRight className="mr-2 h-4 w-4" />
+                  API Documentation
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="payment-links">
+          <PaymentLinks />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
