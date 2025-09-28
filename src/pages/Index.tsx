@@ -54,7 +54,7 @@ const Index = () => {
               <LogOut className="h-4 w-4 mr-2" />
               Sign Out
             </Button>
-            <Button>Dashboard</Button>
+            <Button onClick={() => navigate("/dashboard")}>Dashboard</Button>
           </div>
         </div>
       </header>
@@ -70,7 +70,7 @@ const Index = () => {
             Access your merchant dashboard and API credentials below.
           </p>
           <div className="space-x-4">
-            <Button size="lg">Merchant Dashboard</Button>
+            <Button size="lg" onClick={() => navigate("/dashboard")}>Merchant Dashboard</Button>
             <Button variant="outline" size="lg">API Documentation</Button>
           </div>
         </div>
